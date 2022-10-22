@@ -1,14 +1,16 @@
 const { Client, Events, GatewayIntentBits } = require('discord.js');
 // Create a new client instance
 const client = new Client({ intents: [GatewayIntentBits.Guilds] });
-// Log in to Discord with your client's token
-const dotenv = require('dotenv'); 
-const TOKEN = process.env.DISCORD_TOKEN
-const CLIENT_ID = process.env.CLIENT_ID
+// solução p/ dotenv: https://github.com/AnIdiotsGuide/discordjs-bot-guide/blob/master/other-guides/env-files.md
+const dotenv = require('dotenv').config();
+const TOKEN = process.env.DISCORD_TOKEN;
+const CLIENT_ID = process.env.CLIENT_ID;
 
-console.log(TOKEN)
+// dotenv.config();
 
-dotenv.config();
+console.log(process.env.DISCORD_TOKEN);
+
+
 
 // When the client is ready, run this code (only once)
 // We use 'c' for the event parameter to keep it separate from the already defined 'client'
@@ -46,7 +48,6 @@ const rest = new REST({ version: '10' }).setToken(TOKEN);
     console.error(error);
   }
 })();
-
 
 
 client.login(TOKEN);
